@@ -1,9 +1,9 @@
-name : Demo-1 
+name : Python with Flask
 on: 
  push:
   
 jobs:
- test:
+ pythonjob1:
   runs-on: ubuntu-latest
   steps:
    - name: checkout code
