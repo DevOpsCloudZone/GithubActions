@@ -1,8 +1,8 @@
 name : Python with Flask Workflow
 on: 
  push:
-   - branches
-     demo2 
+   branches:
+     - Demo-2 
   
 jobs:
  pythonjob2:
