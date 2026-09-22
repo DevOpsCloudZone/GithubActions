@@ -1,0 +1,30 @@
+name : Python with Flask Workflow
+on: 
+ push:
+   - branches
+     demo2 
+  
+jobs:
+ pythonjob2:
+  runs-on: ubuntu-latest
+  steps:
+   - name: checkout code
+     uses: actions/checkout@v3
+   - name: Docker Registry Login
+     uses: docker/login-actions@v3
+     with:
+       username:${{secrets.DOCKERHUB_USERNAME}}
+       password:${{secrets.DOCKERHUB_TOKEN}}
+   - name : Docker build and Push Image to Docker hub
+     uses: docker/build-push-actions@v7
+     with:
+       context: .
+       push : true
+       tags: umesh2424/python-flask-app:v1.0.0
+   - name : Docker run
+     run: docker run -d --name cont1 -p 5000:5000 umesh2425/python-flask-app:v1.0.0
+   - name: Smoke Test
+     run: |
+       sleep 5
+       curl http://localhost:5000
+         
